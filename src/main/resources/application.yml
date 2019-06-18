@@ -1,0 +1,22 @@
+debug: true
+logging.level:
+    com.alibaba.webplus.demo: DEBUG
+
+site.id: hzpiq39mwz@43a32c297a28a57
+
+quickstart:
+  doc.url: https://help.aliyun.com/document_detail/118222.html
+  repo:
+    name: alibabacloud-webplus-demo-java
+    url: https://github.com/aliyun/alibabacloud-webplus-demo-java
+
+app.url: https://webplus.console.aliyun.com/${WP_APP_REGION_ID}/app/${WP_APP_ID}/env
+env.url: https://webplus.console.aliyun.com/${WP_APP_REGION_ID}/app/${WP_APP_ID}/env/${WP_ENV_ID}/overview
+
+next.step:
+  show: false
+  package.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}.aliyuncs.com/quickstart/java/next-step/webplus-demo-java-0.1.0-SNAPSHOT-exec.jar
+
+news.repository.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}.aliyuncs.com/whats-new/
+
+webplus.console.url: https://webplus.console.aliyun.com
