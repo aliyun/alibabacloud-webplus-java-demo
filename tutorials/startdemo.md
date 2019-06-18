@@ -27,7 +27,7 @@ wpctl configure --access-key-id "$ALICLOUD_ACCESS_KEY" --access-key-secret "$ALI
 如果您有自己的 Java 工程，可以使用您自己的工程即可，您也可以执行以下命令，将我们的 Demo 工程克隆下来，并进入到工程根目录中。 
 
 ```bash
-git clone https://code.aliyun.com/alibabacloud/webplus-quickstart-java.git && cd webplus-quickstart-java 
+git clone https://github.com/aliyun/alibabacloud-webplus-demo-java.git && cd alibabacloud-webplus-demo-java
 ```
 
 
@@ -45,13 +45,13 @@ mvn package
 - 在命令行中您可以执行以下命令：
 
    ```bash
-   wpctl env:apply --package target/webplus-*.jar --label webplusVersion0.1 --category Java --env webplusEnvDemo --app webplusAppDemo --create-on-absent
+   wpctl env:apply --package target/webplus-*-exec.jar --label webplusVersion0.1 --category Java --env webplusEnvDemo --app webplusAppDemo --create-on-absent
    ```
    > 在这一步，指定对应的应用名称与环境名称，同时指定"—create-on-absent"，用以标明如果不存在此应用或者环境时，将创建相应的资源。
 
 - 在Web+控制台中的步骤如下：
 
-   1. 进入到 Web+ [控制台](Web+.console.aliyun.com)，在概览页的最近更新的部署环境区域的右上角单击 **新建** 的按钮。
+   1. 进入到 Web+ [控制台](webplus.console.aliyun.com)，在概览页的最近更新的部署环境区域的右上角单击 **新建** 的按钮。
    2. 在 **应用基本信息** 页签选择 **技术栈** 为 **Java** ，并输入 **应用名称** 和 **应用描述** ，设置完成后单击 **下一步** 。<br>**说明** ：因为提供的Demo是一个 **FatJar** 应用，故 **技术栈** 选择 **Java**。
    3. 在 **部署环境信息** 页签设置环境名称并上传部署包，然后输入 **部署包版本** 和 **版本描述**。
       * 如果您愿意使用Web+的推荐配置（以按量的方式为您购买一台 1vCPU 1GiB 的ECS实例）为您创建部署环境，请单击 **完成创建**
@@ -108,8 +108,7 @@ mvn package
 
 
 
-
 ## 结束语
 
-恭喜您，完成了 Web+ 的第一个应用托管！Web+，立志做您在阿里云上托管应用的最便捷的助手 :-)
+恭喜您，完成了 Web+ 的第一个应用托管！Web+，您在阿里云上托管应用的最便捷的助手 :-)
 
