@@ -17,6 +17,6 @@ next.step:
   show: false
   package.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}.aliyuncs.com/quickstart/java/next-step/webplus-demo-java-0.1.0-SNAPSHOT-exec.jar
 
-news.repository.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}.aliyuncs.com/whats-new/
+news.repository.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}-internal.aliyuncs.com/whats-new/
 
 webplus.console.url: https://webplus.console.aliyun.com
