@@ -57,6 +57,8 @@ public class DefaultController {
     private static final String ENV_NAME_KEY = "WP_ENV_NAME";
     private static final String CHANGE_TRIGGER_FROM_KEY = "WP_CHANGE_TRIGGER_FROM";
 
+    private final String SUPPORTED_RDS_ENGINE = "MySQL";
+
     @Autowired
     private MessageSource messageSource;
 
@@ -113,6 +115,13 @@ public class DefaultController {
         model.put("consoleUrl", this.consoleUrl);
         model.put("envs", this.getEnvs());
 
+        String rds_engine = System.getenv("WP_RDS_ENGINE");
+        if(SUPPORTED_RDS_ENGINE.equals(rds_engine)) {
+            model.put("show_rds", true);
+        } else {
+            model.put("show_rds", false);
+        }
+
         return new ModelAndView("index", model);
     }
 
@@ -125,7 +134,7 @@ public class DefaultController {
         envs.put("envName", System.getenv(ENV_NAME_KEY));
         envs.put("fromCLI", "CLI".equals(System.getenv(CHANGE_TRIGGER_FROM_KEY)));
         envs.put("fromConsole", "Console".equals(System.getenv(CHANGE_TRIGGER_FROM_KEY)));
-        log.debug("envs = {}", envs);
+        //log.debug("envs = {}", envs);
         return envs;
     }
 
