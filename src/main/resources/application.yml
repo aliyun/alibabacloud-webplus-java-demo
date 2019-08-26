@@ -18,7 +18,6 @@ next.step:
   package.url: https://webplus-prod-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/quickstart/java/next-step/webplus-demo-java-0.1.0-SNAPSHOT-exec.jar
 
 news.repository.url: https://webplus-prod-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/whats-new/
-
 webplus.console.url: https://webplus.console.aliyun.com
 
 spring.thymeleaf.content-type: text/html
