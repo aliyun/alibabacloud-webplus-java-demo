@@ -75,11 +75,11 @@ public class NewsService {
 
     public synchronized List<News> fetchNews() throws IOException {
         if (cachedNews != null) {
-            log.debug("Use cached news.");
+            //log.debug("Use cached news.");
             return cachedNews;
         }
 
-        log.debug("No cached news, fetching...");
+        //log.debug("No cached news, fetching...");
         List<URL> newsFileUrls = this.fetchNewsFileUrls();
         List<News> fileContents = new ArrayList<>(newsFileUrls.size());
         for (URL newsFileUrl : newsFileUrls) {
@@ -97,10 +97,10 @@ public class NewsService {
 
         URL languageFileURL = new URL(baseUrl, LANGUAGE_FILE);
         Set<String> supportedLanguages = new HashSet<>(readFileLines(languageFileURL));
-        log.debug("supportedLanguages={}", supportedLanguages);
+        //log.debug("supportedLanguages={}", supportedLanguages);
 
         String userLanguage = LocaleContextHolder.getLocale().getLanguage();
-        log.debug("userLanguage={}", userLanguage);
+        //log.debug("userLanguage={}", userLanguage);
 
         String newsLanguage;
         if (supportedLanguages.contains(userLanguage)) {
@@ -108,7 +108,7 @@ public class NewsService {
         } else {
             newsLanguage = DEFAULT_LANGUAGE;
         }
-        log.debug("newsLanguage={}", newsLanguage);
+        //log.debug("newsLanguage={}", newsLanguage);
 
         URL indexFileUrl = new URL(baseUrl, newsLanguage + "/" + INDEX_FILE);
         List<String> newsFileNames = readFileLines(indexFileUrl);
