@@ -10,14 +10,15 @@ quickstart:
     name: alibabacloud-webplus-demo-java
     url: https://github.com/aliyun/alibabacloud-webplus-demo-java
 
-app.url: https://webplus.console.aliyun.com/cn-shenzhen/app/app001/env
-env.url: https://webplus.console.aliyun.com/cn-shenzhen/app/app001/env/env001/overview
+app.url: https://webplus.console.aliyun.com/${WP_APP_REGION_ID}/app/${WP_APP_ID}/env
+env.url: https://webplus.console.aliyun.com/${WP_APP_REGION_ID}/app/${WP_APP_ID}/env/${WP_ENV_ID}/overview
 
 next.step:
   show: false
-  package.url: https://webplus-prod-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/quickstart/java/next-step/webplus-demo-java-0.1.0-SNAPSHOT-exec.jar
+  package.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}.aliyuncs.com/quickstart/java/next-step/webplus-java-demo-0.1.1-exec.jar
 
-news.repository.url: https://webplus-prod-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/whats-new/
+news.repository.url: https://webplus-prod-${WP_APP_REGION_ID}.oss-${WP_APP_REGION_ID}-internal.aliyuncs.com/whats-new/
+
 webplus.console.url: https://webplus.console.aliyun.com
 
 spring.thymeleaf.content-type: text/html
