@@ -23,34 +23,32 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.alibaba.webplus.demo;
+package com.alibaba.webplus.demo.dao;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+import com.alibaba.webplus.demo.model.Todo;
 
-import java.util.Locale;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Aomo
  */
-@SpringBootApplication
-@EnableAutoConfiguration(exclude = MustacheAutoConfiguration.class)
-public class Application {
+public interface TodoDao {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+    Todo getById(long id);
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        return localeResolver;
-    }
+    List<Todo> getAll();
+
+    List<Todo> getByStatus(boolean completed);
+
+    void create(Todo item);
+
+    void update(long id, Todo item);
+
+    void removeById(long id);
+
+    void removeByStatus(boolean completed);
+
+    Map<String, Integer> count();
 
 }

@@ -23,34 +23,32 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.alibaba.webplus.demo;
+package com.alibaba.webplus.demo.configuration;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.samskivert.mustache.Mustache;
 import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
-
-import java.util.Locale;
+import org.springframework.boot.autoconfigure.mustache.MustacheProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  * @author Aomo
  */
-@SpringBootApplication
-@EnableAutoConfiguration(exclude = MustacheAutoConfiguration.class)
-public class Application {
+@Configuration
+@EnableConfigurationProperties({MustacheProperties.class})
+public class MustacheTemplateConfiguration extends MustacheAutoConfiguration {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    public MustacheTemplateConfiguration(MustacheProperties mustache,
+                                         ApplicationContext applicationContext) {
+        super(mustache, applicationContext);
     }
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        return localeResolver;
+    @Override
+    public Mustache.Compiler mustacheCompiler(Mustache.TemplateLoader mustacheTemplateLoader,
+                                              Environment environment) {
+        return super.mustacheCompiler(mustacheTemplateLoader, environment).defaultValue("").nullValue("");
     }
 
 }

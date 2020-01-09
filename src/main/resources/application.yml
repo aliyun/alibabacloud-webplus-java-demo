@@ -1,25 +1,28 @@
-debug: true
+debug: false
 logging.level:
-    com.alibaba.webplus.demo: DEBUG
+    com.alibaba.webplus.demo: INFO
 
-site.id: hzpiq39mwz@43a32c297a28a57
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${WP_RDS_CONNECTION_ADDRESS:localhost}:${WP_RDS_PORT:3306}/${WP_RDS_DATABASE:webplus}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ${WP_RDS_ACCOUNT_NAME:webplus}
+    password: ${WP_RDS_ACCOUNT_PASSWORD:NONE}
+    tomcat:
+      max-active: 20
+    dbcp2:
+      min-idle: 2
+      max-idle: 5
+      initial-size: 10
 
-quickstart:
-  doc.url: https://help.aliyun.com/document_detail/118222.html
-  repo:
-    name: alibabacloud-webplus-demo-java
-    url: https://github.com/aliyun/alibabacloud-webplus-demo-java
-
-app.url: https://webplus.console.aliyun.com/cn-shenzhen/app/app001/env
-env.url: https://webplus.console.aliyun.com/cn-shenzhen/app/app001/env/env001/overview
-
-next.step:
-  show: false
-  package.url: https://webplus-prod-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/quickstart/java/next-step/webplus-demo-java-0.1.0-SNAPSHOT-exec.jar
-
-news.repository.url: https://webplus-prod-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/whats-new/
-webplus.console.url: https://webplus.console.aliyun.com
-
-spring.thymeleaf.content-type: text/html
-spring.thymeleaf.cache: false
-spring.thymeleaf.mode: LEGACYHTML5
+webplus:
+  site.id: hzpiq39mwz@43a32c297a28a57
+  console.url.template: https://%{domainPrefix}.console.aliyun.com
+  quickstart:
+    doc.url.template: https://%{docBase}/118222.html
+    repo:
+      name: alibabacloud-webplus-demo-java
+      url: https://github.com/aliyun/alibabacloud-webplus-demo-java
+  envs.doc.url.template: https://%{docBase}/119810.html
+  app.url.template: https://%{domainPrefix}.console.aliyun.com/${WP_APP_REGION_ID}/app/${WP_APP_ID}/overview
+  env.url.template: https://%{domainPrefix}.console.aliyun.com/${WP_APP_REGION_ID}/app/${WP_APP_ID}/env/${WP_ENV_ID}/overview

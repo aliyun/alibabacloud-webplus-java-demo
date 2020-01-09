@@ -23,34 +23,19 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.alibaba.webplus.demo;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
-
-import java.util.Locale;
+package com.alibaba.webplus.demo.helper;
 
 /**
  * @author Aomo
  */
-@SpringBootApplication
-@EnableAutoConfiguration(exclude = MustacheAutoConfiguration.class)
-public class Application {
+public class DbHelper {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+    private static final String RDS_ENGINE_KEY = "WP_RDS_ENGINE";
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        return localeResolver;
+    private static final String SUPPORTED_RDS_ENGINE = "MySQL";
+
+    public static boolean isMysqlDatabasePresent() {
+        return SUPPORTED_RDS_ENGINE.equals(System.getenv(RDS_ENGINE_KEY));
     }
 
 }

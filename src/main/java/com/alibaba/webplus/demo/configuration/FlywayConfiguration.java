@@ -23,34 +23,31 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.alibaba.webplus.demo;
+package com.alibaba.webplus.demo.configuration;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
+import com.alibaba.webplus.demo.helper.DbHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
-
-import java.util.Locale;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Aomo
  */
-@SpringBootApplication
-@EnableAutoConfiguration(exclude = MustacheAutoConfiguration.class)
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+@Slf4j
+@Configuration
+public class FlywayConfiguration {
 
     @Bean
-    public LocaleResolver localeResolver() {
-        AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        return localeResolver;
+    public FlywayMigrationStrategy flywayMigrationStrategy() {
+        return flyway -> {
+            if (DbHelper.isMysqlDatabasePresent()) {
+                log.info("MySQL presents, migrate database.");
+                flyway.migrate();
+            } else {
+                log.warn("No MySQL presents, skip migration.");
+            }
+        };
     }
 
 }

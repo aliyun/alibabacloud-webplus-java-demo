@@ -23,32 +23,66 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.alibaba.webplus.demo.service;
-
-import com.alibaba.webplus.demo.model.Todo;
+package com.alibaba.webplus.demo.service.impl;
 
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.webplus.demo.dao.TodoDao;
+import com.alibaba.webplus.demo.model.Todo;
+
+import com.alibaba.webplus.demo.service.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  * @author Baiji
+ * @date 2019/07/23
  */
-public interface TodoService {
+@Service
+public class TodoServiceImpl implements TodoService {
 
-    Todo getById(long id);
+    @Autowired
+    private TodoDao dao;
 
-    List<Todo> getAll();
+    @Override
+    public Todo getById(long id) {
+        return this.dao.getById(id);
+    }
 
-    List<Todo> getByStatus(boolean completed);
+    @Override
+    public List<Todo> getAll() {
+        return this.dao.getAll();
+    }
 
-    void create(Todo item);
+    @Override
+    public List<Todo> getByStatus(boolean completed) {
+        return this.dao.getByStatus(completed);
+    }
 
-    void update(long id, Todo item);
+    @Override
+    public void create(Todo item) {
+        this.dao.create(item);
+    }
 
-    void removeById(long id);
+    @Override
+    public void update(long id, Todo item) {
+        dao.update(id, item);
+    }
 
-    void removeByStatus(boolean completed);
+    @Override
+    public void removeById(long id) {
+        this.dao.removeById(id);
+    }
 
-    Map<String, Integer> count();
+    @Override
+    public void removeByStatus(boolean completed) {
+        this.dao.removeByStatus(completed);
+    }
+
+    @Override
+    public Map<String, Integer> count() {
+        return this.dao.count();
+    }
 
 }
