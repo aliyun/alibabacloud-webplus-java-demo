@@ -28,7 +28,6 @@ package com.alibaba.webplus.demo.controller;
 import com.alibaba.webplus.demo.model.InternationalizationLambda;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,12 +35,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author Baiji
+ * @author Aomo
  */
 @Slf4j
 @RestController
@@ -70,7 +69,7 @@ public class EnvsController extends BaseController {
                 wpEnvs.add(new ImmutablePair<>(entryKey, entry.getValue()));
             }
         }
-        wpEnvs.sort(Comparator.comparing(Pair::getKey));
+        wpEnvs.sort(Map.Entry.comparingByKey());
         return wpEnvs;
     }
 
